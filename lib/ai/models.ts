@@ -9,6 +9,17 @@ export type ChatModel = {
 export const chatModels: ChatModel[] = [
   {
     id: "chat-model",
+    name: "GPT-4o",
+    description: "Advanced multimodal model with vision and text capabilities",
+  },
+  {
+    id: "chat-model-reasoning",
+    name: "GPT-4o Reasoning",
+    description: "Uses advanced chain-of-thought reasoning for complex problems",
+  }
+  /**
+  {
+    id: "chat-model",
     name: "Grok Vision",
     description: "Advanced multimodal model with vision and text capabilities",
   },
@@ -18,4 +29,5 @@ export const chatModels: ChatModel[] = [
     description:
       "Uses advanced chain-of-thought reasoning for complex problems",
   },
+  **/
 ];

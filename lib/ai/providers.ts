@@ -4,6 +4,7 @@ import {
   extractReasoningMiddleware,
   wrapLanguageModel,
 } from "ai";
+import { openai } from "@ai-sdk/openai";
 import { isTestEnvironment } from "../constants";
 
 export const myProvider = isTestEnvironment
@@ -24,6 +25,16 @@ export const myProvider = isTestEnvironment
       });
     })()
   : customProvider({
+    languageModels: {
+      "chat-model": openai("gpt-4o"),
+      "chat-model-reasoning": wrapLanguageModel({
+        model: openai("gpt-4o"),
+        middleware: extractReasoningMiddleware({ tagName: "think" }),
+      }),
+      "title-model": openai("gpt-4o"),
+      "artifact-model": openai("gpt-4o"),
+    },
+      /** 
       languageModels: {
         "chat-model": gateway.languageModel("xai/grok-2-vision-1212"),
         "chat-model-reasoning": wrapLanguageModel({
@@ -33,4 +44,5 @@ export const myProvider = isTestEnvironment
         "title-model": gateway.languageModel("xai/grok-2-1212"),
         "artifact-model": gateway.languageModel("xai/grok-2-1212"),
       },
+      **/
     });
